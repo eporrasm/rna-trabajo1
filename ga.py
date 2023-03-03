@@ -52,13 +52,13 @@ class City:
         self.text = font.render(str(self.num), False, (255, 255, 255))
 
     def display(self):
-        pygame.draw.circle(screen, (255, 255, 255), (self.x, self.y), 5)
+        pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), radius = 5)
 
 #Inicializamos las ciudades
 nombres = list(df_ciudades.Municipio)
 
-X = list(round((df_ciudades.Longitud-df_ciudades.Longitud.min())/(df_ciudades.Longitud.max()-df_ciudades.Longitud.min())*740))
-Y = list(round((df_ciudades.Latitud-df_ciudades.Latitud.min())/(df_ciudades.Latitud.max()-df_ciudades.Latitud.min())*740))
+X = [264, 299, 329, 368, 278, 393, 273, 274, 260, 244, 268, 198, 292, 251, 365]
+Y = [359, 97, 354, 258, 123, 217, 337, 275, 186, 397, 348, 494, 110, 377, 119]
 cities = [City(nombres[i], X[i], Y[i], i) for i in range(totalNum)] 
 
 class Route:
@@ -69,7 +69,7 @@ class Route:
     def display(self):
         for i, cityNum in enumerate(self.cityPath):
             pygame.draw.line(screen, (0, 0, 255), (cities[self.cityPath[i]].x, cities[self.cityPath[i]].y), \
-                            (cities[self.cityPath[i-1]].x, cities[self.cityPath[i-1]].y))
+                            (cities[self.cityPath[i-1]].x, cities[self.cityPath[i-1]].y), width=2)
     #Aquí tenemos que incorporar la matriz de costos calculada
     def calcDistance(self):
         distance = 0
