@@ -114,6 +114,7 @@ def main():
     global population
     running = True
     counter = 0
+    frames = []
 
     best = random.choice(population)
 
@@ -125,24 +126,33 @@ def main():
             print(city.x, city.y)
     '''
     clock = pygame.time.Clock()
+    i = 1
     while True:
+        #i = 1
         screen.fill((0, 0, 0))
         screen.blit(background, (0, 0))
         best.display()
         if counter >= popNum - 1:
             break
         #print(counter)
+        pygame.image.save(screen, f"imagenes/mapa{i}.png")
+        i += 1
         clock.tick(60)
         pygame.display.update()
         screen.fill((0, 0, 0))
+        #screen.blit(background, (0, 0))
         for city in cities:
             city.display()
             screen.blit(city.text, (city.x - 20, city.y - 20))
         for element in population:
             element.calcDistance()
 
+        
         sortPop()
         crossover()
+
+        # pygame.image.save(screen, f"imagenes/mapa{i}.png")
+        # i += 1
         
         for element in population:
             if element.distance < minDistance:
