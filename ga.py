@@ -56,7 +56,6 @@ class City:
 
 #Inicializamos las ciudades
 nombres = list(df_ciudades.Municipio)
-
 X = [264, 299, 329, 368, 278, 393, 273, 274, 260, 244, 268, 198, 292, 251, 365]
 Y = [359, 97, 354, 258, 123, 217, 337, 275, 186, 397, 348, 494, 110, 377, 119]
 cities = [City(nombres[i], X[i], Y[i], i) for i in range(totalNum)] 
