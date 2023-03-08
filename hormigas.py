@@ -180,8 +180,8 @@ def plot(points, path: list):
 
 def main():
     nombres = list(df_ciudades.Municipio)
-    X = [266, 297, 330, 367, 274, 392, 270, 267, 261, 240, 262, 196, 296, 247, 362]
-    Y = [378, 648, 389, 485, 620, 520, 406, 457, 553, 343, 394, 248, 361, 364, 626]
+    X = [266, 297, 330, 367, 274, 392, 270, 267, 261, 240, 262, 196, 295, 247, 362]
+    Y = [378, 648, 389, 485, 620, 520, 406, 457, 553, 343, 394, 248, 631, 364, 626]
     cities = []
     points = []
     i = 0
@@ -195,11 +195,10 @@ def main():
         for j in range(rank):
             if i != j and cost_matrix[i][j] == 0:
                 cost_matrix[i][j] = 20000
-    aco = ACO(100, 200, 1.0, 1.0, 0.1, 10, 2)
+    aco = ACO(100, 300, 1.0, 1.0, 0.1, 10, 2)
     graph = Graph(cost_matrix, rank)
     paths, cost = aco.solve(graph)
     print('costo: ${}, recorrido: {}'.format(round(cost), [nombres[i] for i in paths[-1]]))
-    print(len(paths))
     for path in paths:
         plot(points, path)
 
