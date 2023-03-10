@@ -68,43 +68,37 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 | 11446906.425999999 | 44665970.880499996 | 270600.13864 | 399633.056065 | 577374.299255 | 478131.01729 | 161951.94933 | 244004.413625 | 458683.35762499995 | 0.0 | 127769.59085 | 177239.63937999998 | 610085.74202 | 0.0 | 525409.23966 |
 | 418535.755365 | 155067.773575 | 390112.273795 | 201113.822865 | 168573.980525 | 215874.40212499996 | 366919.97109999997 | 347255.136825 | 200927.126705 | 525409.23966 | 409963.84150499996 | 685441.7648049999 | 155067.773575 | 525409.23966 | 0.0 |
 
+3. Se implementaron algoritmos genéticos por medio de python [6] y se obtuvo el siguiente gif que representa la evolución de la mejor ruta a lo largo de las generaciones:
 
+    <img src="gifGA.gif" alt="mapaga" title="mapaga">
 
-## Resultados de los modelos
+    _figura x: Mapa de Colombia con recorridos_ 
 
+    Con lo que la mejor ruta encontrada por los algoritmos genéticos fue:
 
+    Pasto -> Palmira -> Tulua -> Armenia -> Pereira -> Medellin -> Manizales -> Bogota D.C. -> Bucaramanga -> Cucuta -> Valledupar -> Soledad -> Barranquilla -> Cartagena -> Monteria
 
+    Con un costo de: $1.586.600 COP
 
-### Evaluación
+4. Se implementó colonia de hormigas por medio de python [7] y se obtuvo el siguiente gif que representa la evolución de la mejor ruta que descubren 100 hormigas:
 
-Cada modelo fue evaluado con la métria MAE (Mean Absolute Error), y se consiguieron los siguientes resultados:
+    <img src="gifAC.gif" alt="mapaga" title="mapaga">
 
-| Clase       | MAE Train | MAE Test | MAE Val. |
-| ----------- | --------- | -------- | -------- |
-| Atropello   | 2.88      | 3.14     | 3.70     |
-| Caida       | 3.12      | 3.14     | 3.85     |
-| Volcamiento | 1.82      | 2.28     | 2.43     |
-| Otro        | 3.77      | 4.52     | 6.38     |
-| Choque      | 8.00      | 10.35    | 34.35    |
+    _figura x: Mapa de Colombia con recorridos de hormigas_ 
 
-_tabla 3: MAE modelos de predicción_
+    Con lo que la mejor ruta encontrada por la colonia de hormigas fue:
 
-En general cada modelo dio muy buenos resultados, en especial porque son números los que predice, y varían drásticamente en ciertos casos.
+    Pereira -> Armenia -> Palmira -> Tulua -> Manizales -> Pasto -> Bogota D.C. -> Bucaramanga -> Cucuta -> Valledupar -> Soledad -> Barranquilla -> Cartagena -> Monteria -> Medellin
 
-Como excepciones se puede ver que para Choque, el MAE de validación no estuvo muy cerca de los otros MAE correspondientes, pero esto se cree que se debe a la alta cantidad de accidentes de clase choque que se presentan y se tienen que predecir (en los miles). Haciendo que 34 de error absoluto no sea un resultado tan malo.
+    Con un costo de: $2.013.640 COP
 
-También en la tabla se excluyen los accidentes de clase Incendio, debido a que cada vez que había un incendio, sólo era 1 por día, lo cuál hacía que ponerle un modelo predictivo fuera innecesario.
+## Conclusiones
 
+- Ambos algoritmos lograron solucionar el problema con resultados mucho mejores que el azar o un análisis a priori.
 
-<img src="/Graficas/mapa1.JPG" alt="mapamedellin" title="mapamedellin">
+- Los algoritmos genéticos se desempeñaron mejor que las colonias de hormigas, pero se sospecha que se debe a la capacidad de cómputo limitada que solo permitió simular 100 hormigas.
 
-_figura 6: Mapa de Medellín_
-
-# Conclusiones
-
-- La mayoría de barrios peligrosos van ligados a la autopista Regional y a la autopista Norte y sus alrededores. Esto se debe a que son vías en las que se conduce a una mayor velocidad. Además, se observa que la mayoría de barrios que quedan en la zona de las autopistas en la comuna 10 - La Candelaria, representan un gran riesgo. En esta zona, se suma una mayor velocidad en las vías con una densidad poblacional muy alta, con cruce constante de personas.
-- De manera similar, los barrios del cluster 1, es decir, los de intermedia incidentalidad, suelen estar cerca a vías de alta concurrencia diferentes a las autopistas, tales como San Juan, la calle 33 y la 30, la avenida el Poblado (la carrera 43a), entre otras.
-- La mayoría de barrios de cuadras pequeñas pertenecen al cluster 0, teniendo la menor accidentalidad. Esto, en parte, se podría deber a que, al tener cuadras más pequeñas, los carros se ven obligados a conducir más lento, por lo que la mayoría de choques serían incidentes y no accidentes. Por otro lado, es claro que en una vía en la que transcurren muchos más carros, como la que lleva de un lado a otro de la ciudad, exista una mayor probabilidad de que haya un accidente.
+- Recorrer todas las ciudades deseadas por poco más de un millón y medio de pesos parece muy razonable, más aún teniendo en cuenta que se escogió un vehículo que no tiene un rendimiento de combustible destacable.
 
 
 # Bibliografía
@@ -118,16 +112,7 @@ _figura 6: Mapa de Medellín_
 - [4] “Consumo Gasolina: 8,35 l/100km - Mini, Mini Cooper, Mini Cooper 1.6,” www.spritmonitor.de. https://www.spritmonitor.de/es/detalle/125236.html?cdetail=1 (accessed Mar. 10, 2023).
 
 - [5] “Colombia precios de la gasolina, 06-marzo-2023,” GlobalPetrolPrices.com. https://es.globalpetrolprices.com/Colombia/gasoline_prices/#:~:text=El%20valor%20medio%20durante%20este (accessed Mar. 10, 2023).
-‌
-‌
-‌
-‌
-‌
 
-
-# Lecturas recomendadas
-
-- "Universidad de Antioquia" (SF). Mala educación, principal causa de inseguridad vial en Medellín [Online]. Available: [UDEA](https://www.udea.edu.co/wps/portal/udea/web/inicio/udea-noticias/udea-noticia/!ut/p/z0/fYyxDoJAEER_xYbS7Ip4akksTIyFhTFwjdlwF1yFW-AO4ucLWhgbm8m8ycyAhgy0o4FLCiyOqpFzra6b7S5epAkeUSUKU3VKVut4vzxfEA6g_xfGB763rU5BF-KCfQbIGukCVb2xFCH5X7pJbT9-0pmTwAWTj_C9dmxkan1jLwVbQyZCdt6WfccjzGsZuJocNA-dvwBb8aDu/)
-- "Secretaría de Movilidad de Medellín" (SF). ¿Qué es Visión Cero? [Online]. Available: https://www.visionceromedellin.co/?playlist=cba060b&video=828a030
-- "Concejo de Medellín" (SF). LA ALTA ACCIDENTALIDAD EN MEDELLÍN SE CONVIRTIÓ EN UN PROBLEMA DE SALUD PÚBLICA [Online]. Available: https://www.concejodemedellin.gov.co/es/node/1024?language_content_entity=es
-- "Medellín Cómo vamos" (SF). Medellín: número de muertes en accidentes de tránsito y tasa por 100.000 habitantes, 2014-2019 [Online]. Available: https://www.medellincomovamos.org/node/23554
+- [6] M. Kukreja, “Travelling-Salesman-Problem-with-Genetic-Algorithm,” GitHub, Oct. 10, 2022. https://github.com/manpreet1130/Travelling-Salesman-Problem-with-Genetic-Algorithm (accessed Mar. 10, 2023).
+‌
+- [7] R. Zhang, “ant-colony-tsp,” GitHub, Feb. 27, 2023. https://github.com/ppoffice/ant-colony-tsp (accessed Mar. 10, 2023).
