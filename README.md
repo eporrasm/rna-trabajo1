@@ -1,3 +1,133 @@
-# rna-trabajo1
+# Trabajo 1 de Redes Neuronales Artificiales y Algoritmos Bio-Inspirados de la UNAL-med
 
-Coordenadas de municipios: https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/
+## A cargo de:
+
+- Esteban García Carmona
+- Emilio Porras Mejía
+- Felipe Miranda Arboleda
+
+## Introducción
+
+## 1. Optimización Numérica
+
+## 2. Optimización Combinatoria
+
+## Problemática
+
+Se debe resolver el problema del vendedor viajero para varias ciudades principales de Colombia. El objetivo es hallar un camino que, pasando por cada ciudad por lo menos una vez, minimice el costo definido por la suma del valor de la hora del vendedor, el costo de los peajes y el costo del combustible.
+
+## Procedimiento
+
+Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y Colonia de hormigas (AC).
+
+1. Creamos la base de datos de las ciudades a visitar con sus respectivas coordenadas [1].
+
+| Cod Mun | Municipio    | Cod Dep | Departamento       | Latitud     | Longitud     |
+|---------|--------------|---------|--------------------|-------------|--------------|
+| 63001   | Armenia      | 63      | Quindio            | 4,5338889   | -75,6811111  |
+| 8001    | Barranquilla | 8       | Atlantico          | 10,9638889  | -74,7963889  |
+| 11001   | Bogota D.C.  | 25      | Cundinamarca       | 4,6         | -74,0833333  |
+| 68001   | Bucaramanga  | 68      | Santander          | 7,1297222   | -73,1258333  |
+| 13001   | Cartagena    | 13      | Bolivar            | 10,3997222  | -75,5144444  |
+| 54001   | Cucuta       | 54      | Norte de Santander | 7,8833333   | -72,5052778  |
+| 17001   | Manizales    | 17      | Caldas             | 5,07        | -75,5205556  |
+| 5001    | Medellin     | 5       | Antioquia          | 6,2913889   | -75,5361111  |
+| 23001   | Monteria     | 23      | Cordoba            | 8,7575      | -75,89       |
+| 76520   | Palmira      | 76      | Valle del Cauca    | 3,5394444   | -76,3036111  |
+| 66001   | Pereira      | 66      | Risaralda          | 4,8133333   | -75,6961111  |
+| 52001   | Pasto        | 52      | Narino             | 1,214670737 | -77,27864742 |
+| 8758    | Soledad      | 8       | Atlantico          | 10,9172222  | -74,7666667  |
+| 76834   | Tulua        | 76      | Valle del Cauca    | 4,0866667   | -76,2        |
+| 20001   | Valledupar   | 20      | Cesar              | 10,4769444  | -73,2505556  |
+
+2. Procedemos a construír la matriz de costos. La entrada i,j de esta matriz contendrá el costo en pesos de ir de la ciudad i a la ciudad j. Éste, a su vez es la suma del salario por horas del vendedor, costo de los peajes y el costo del combustible en valores del 2023.
+
+    Costo hora del vendedor: El salario promedio de un conductor en colombia es de $6.827/hora [2].
+
+    Costo de los peajes: Se estableció el costo de los peajes, el tiempo estimado de viaje y la distancia para cada par de ciudades [3].
+
+    Costo del combustible: El recorrido se hará en un Mini Cooper 1.6, cuyo rendimiento es de 8,35 litros / 100 km [4]. Además, el costo promedio de un litro de gasolina corriente en colombia es de $2.747,31/litro [5]. 
+
+    Importamos las tablas de tiempo de viaje, costo de los peajes y distancia entre ciudades. Para así calcular la siguiente matriz de costos totales en pesos:
+
+| Armenia | Barranquilla | Bogota D.C. | Bucaramanga | Cartagena | Cucuta | Manizales | Medellin | Monteria | Palmira | Pereira | Pasto | Soledad | Tulua | Valledupar |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0.0 | 484086.92267999996 | 158390.37857 | 276519.39869 | 488048.897655 | 373928.47954 | 75171.62696 | 154821.05318 | 386649.35525499994 | 109939.39929999999 | 33138.218479999996 | 272342.285215 | 484086.92267999996 | 109939.39929999999 | 418535.755365 |
+| 484086.92267999996 | 0.0 | 489627.626915 | 284902.81522499997 | 74886.8562 | 302841.99294499995 | 436731.38418999995 | 355567.88026999997 | 163759.57590499998 | 610085.74202 | 493162.99425 | 773854.0279349999 | 0.0 | 610085.74202 | 155067.773575 |
+| 158390.37857 | 489627.626915 | 0.0 | 200351.15669499998 | 502543.99425 | 248886.51444499998 | 154480.32627 | 232200.960555 | 434579.62032 | 270600.13864 | 185157.48242999997 | 431240.645325 | 489627.626915 | 270600.13864 | 390112.273795 |
+| 276519.39869 | 284902.81522499997 | 200351.15669499998 | 0.0 | 306205.39025 | 94314.92623 | 227708.18558 | 218759.15553999998 | 331638.676045 | 399633.056065 | 271317.30521499994 | 551325.6389 | 284902.81522499997 | 399633.056065 | 201113.822865 |
+| 488048.897655 | 74886.8562 | 502543.99425 | 306205.39025 | 0.0 | 315763.86143499997 | 431280.009935 | 334374.8464 | 152632.20626 | 577374.299255 | 452510.226865 | 735962.15209 | 74886.8562 | 577374.299255 | 168573.980525 |
+| 373928.47954 | 302841.99294499995 | 248886.51444499998 | 94314.92623 | 315763.86143499997 | 0.0 | 317427.01719 | 300072.69022999995 | 348359.996075 | 478131.01729 | 361290.12759499997 | 639821.111665 | 302841.99294499995 | 478131.01729 | 215874.40212499996 |
+| 75171.62696 | 436731.38418999995 | 154480.32627 | 227708.18558 | 431280.009935 | 317427.01719 | 0.0 | 99300.11468999999 | 322660.35099999997 | 161951.94933 | 44775.21079 | 252075.94324 | 436731.38418999995 | 161951.94933 | 366919.97109999997 |
+| 154821.05318 | 355567.88026999997 | 232200.960555 | 218759.15553999998 | 334374.8464 | 300072.69022999995 | 99300.11468999999 | 0.0 | 234263.495925 | 244004.413625 | 119375.24277499999 | 405334.06877 | 355567.88026999997 | 244004.413625 | 347255.136825 |
+| 386649.35525499994 | 163759.57590499998 | 434579.62032 | 331638.676045 | 152632.20626 | 348359.996075 | 322660.35099999997 | 234263.495925 | 0.0 | 458683.35762499995 | 344100.87908499996 | 625157.8531549999 | 163759.57590499998 | 458683.35762499995 | 200927.126705 |
+| 109939.39929999999 | 610085.74202 | 270600.13864 | 399633.056065 | 577374.299255 | 478131.01729 | 161951.94933 | 244004.413625 | 458683.35762499995 | 0.0 | 127769.59085 | 177239.63937999998 | 610085.74202 | 0.0 | 525409.23966 |
+| 33138.218479999996 | 493162.99425 | 185157.48242999997 | 271317.30521499994 | 452510.226865 | 361290.12759499997 | 44775.21079 | 119375.24277499999 | 344100.87908499996 | 127769.59085 | 0.0 | 278667.52407 | 493162.99425 | 127769.59085 | 409963.84150499996 |
+| 272342.285215 | 773854.0279349999 | 431240.645325 | 551325.6389 | 735962.15209 | 639821.111665 | 252075.94324 | 405334.06877 | 625157.8531549999 | 177239.63937999998 | 278667.52407 | 0.0 | 773854.0279349999 | 177239.63937999998 | 685441.7648049999 |
+| 32102800.788 | 0.0 | 489627.626915 | 284902.81522499997 | 74886.8562 | 302841.99294499995 | 436731.38418999995 | 355567.88026999997 | 163759.57590499998 | 610085.74202 | 493162.99425 | 773854.0279349999 | 0.0 | 610085.74202 | 155067.773575 |
+| 11446906.425999999 | 44665970.880499996 | 270600.13864 | 399633.056065 | 577374.299255 | 478131.01729 | 161951.94933 | 244004.413625 | 458683.35762499995 | 0.0 | 127769.59085 | 177239.63937999998 | 610085.74202 | 0.0 | 525409.23966 |
+| 418535.755365 | 155067.773575 | 390112.273795 | 201113.822865 | 168573.980525 | 215874.40212499996 | 366919.97109999997 | 347255.136825 | 200927.126705 | 525409.23966 | 409963.84150499996 | 685441.7648049999 | 155067.773575 | 525409.23966 | 0.0 |
+
+
+
+## Resultados de los modelos
+
+
+
+
+### Evaluación
+
+Cada modelo fue evaluado con la métria MAE (Mean Absolute Error), y se consiguieron los siguientes resultados:
+
+| Clase       | MAE Train | MAE Test | MAE Val. |
+| ----------- | --------- | -------- | -------- |
+| Atropello   | 2.88      | 3.14     | 3.70     |
+| Caida       | 3.12      | 3.14     | 3.85     |
+| Volcamiento | 1.82      | 2.28     | 2.43     |
+| Otro        | 3.77      | 4.52     | 6.38     |
+| Choque      | 8.00      | 10.35    | 34.35    |
+
+_tabla 3: MAE modelos de predicción_
+
+En general cada modelo dio muy buenos resultados, en especial porque son números los que predice, y varían drásticamente en ciertos casos.
+
+Como excepciones se puede ver que para Choque, el MAE de validación no estuvo muy cerca de los otros MAE correspondientes, pero esto se cree que se debe a la alta cantidad de accidentes de clase choque que se presentan y se tienen que predecir (en los miles). Haciendo que 34 de error absoluto no sea un resultado tan malo.
+
+También en la tabla se excluyen los accidentes de clase Incendio, debido a que cada vez que había un incendio, sólo era 1 por día, lo cuál hacía que ponerle un modelo predictivo fuera innecesario.
+
+
+<img src="/Graficas/mapa1.JPG" alt="mapamedellin" title="mapamedellin">
+
+_figura 6: Mapa de Medellín_
+
+# Conclusiones
+
+- La mayoría de barrios peligrosos van ligados a la autopista Regional y a la autopista Norte y sus alrededores. Esto se debe a que son vías en las que se conduce a una mayor velocidad. Además, se observa que la mayoría de barrios que quedan en la zona de las autopistas en la comuna 10 - La Candelaria, representan un gran riesgo. En esta zona, se suma una mayor velocidad en las vías con una densidad poblacional muy alta, con cruce constante de personas.
+- De manera similar, los barrios del cluster 1, es decir, los de intermedia incidentalidad, suelen estar cerca a vías de alta concurrencia diferentes a las autopistas, tales como San Juan, la calle 33 y la 30, la avenida el Poblado (la carrera 43a), entre otras.
+- La mayoría de barrios de cuadras pequeñas pertenecen al cluster 0, teniendo la menor accidentalidad. Esto, en parte, se podría deber a que, al tener cuadras más pequeñas, los carros se ven obligados a conducir más lento, por lo que la mayoría de choques serían incidentes y no accidentes. Por otro lado, es claro que en una vía en la que transcurren muchos más carros, como la que lleva de un lado a otro de la ciudad, exista una mayor probabilidad de que haya un accidente.
+
+
+# Bibliografía
+
+- [1] “Geoportal del DANE - Codificación Divipola,” geoportal.dane.gov.co. https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/ (accessed Mar. 10, 2023).
+
+- [2] “Salario para Conductor en Colombia - Salario Medio,” Talent.com. https://co.talent.com/salary?job=conductor#:~:text= (accessed Mar. 10, 2023).
+
+- [3] S. O. C. S.A.S, “Peajes en Colombia [2022],” Viaja por Colombia. https://viajaporcolombia.com/peajes/ (accessed Mar. 10, 2023).
+
+- [4] “Consumo Gasolina: 8,35 l/100km - Mini, Mini Cooper, Mini Cooper 1.6,” www.spritmonitor.de. https://www.spritmonitor.de/es/detalle/125236.html?cdetail=1 (accessed Mar. 10, 2023).
+
+- [5] “Colombia precios de la gasolina, 06-marzo-2023,” GlobalPetrolPrices.com. https://es.globalpetrolprices.com/Colombia/gasoline_prices/#:~:text=El%20valor%20medio%20durante%20este (accessed Mar. 10, 2023).
+‌
+‌
+‌
+‌
+‌
+
+
+# Lecturas recomendadas
+
+- "Universidad de Antioquia" (SF). Mala educación, principal causa de inseguridad vial en Medellín [Online]. Available: [UDEA](https://www.udea.edu.co/wps/portal/udea/web/inicio/udea-noticias/udea-noticia/!ut/p/z0/fYyxDoJAEER_xYbS7Ip4akksTIyFhTFwjdlwF1yFW-AO4ucLWhgbm8m8ycyAhgy0o4FLCiyOqpFzra6b7S5epAkeUSUKU3VKVut4vzxfEA6g_xfGB763rU5BF-KCfQbIGukCVb2xFCH5X7pJbT9-0pmTwAWTj_C9dmxkan1jLwVbQyZCdt6WfccjzGsZuJocNA-dvwBb8aDu/)
+- "Secretaría de Movilidad de Medellín" (SF). ¿Qué es Visión Cero? [Online]. Available: https://www.visionceromedellin.co/?playlist=cba060b&video=828a030
+- "Concejo de Medellín" (SF). LA ALTA ACCIDENTALIDAD EN MEDELLÍN SE CONVIRTIÓ EN UN PROBLEMA DE SALUD PÚBLICA [Online]. Available: https://www.concejodemedellin.gov.co/es/node/1024?language_content_entity=es
+- "Medellín Cómo vamos" (SF). Medellín: número de muertes en accidentes de tránsito y tasa por 100.000 habitantes, 2014-2019 [Online]. Available: https://www.medellincomovamos.org/node/23554
