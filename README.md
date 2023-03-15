@@ -32,6 +32,37 @@ $f(x) = \sum([100*(x_{i+1}-x_i^2)^2 + (x_i-1)^2])$
 
 ## 1. Optimización Numérica
 
+## 1.1 Griewank
+
+*cosas*
+
+## 1.2 Rosenbrock
+
+### 1.2.1 Optimización de Partículas
+
+<img src="RosenbrockGifs\rosenbrockSwarm.gif" alt="mapaga" title="rosenSwarm2D">
+
+_figura x: Imagen animada optimización de partículas de Rosenbrock_
+
+### 1.2.2 Descenso Por Gradiente
+
+<img src="RosenbrockGifs\rosenbrockGradient2D.gif" alt="mapaga" title="rosenGradient2D">
+
+_figura x: Imagen animada Descenso Por Gradiente de Rosenbrock_
+
+### 1.2.3 Algoritmo Evolutivo
+
+<img src="RosenbrockGifs\rosenbrockPyGad2D.gif" alt="mapaga" title="rosenPyGad2D">
+
+_figura x: Imagen animada Algoritmo Evolutivo de Rosenbrock_
+
+### 1.2.4 Evolución diferencial
+
+<img src="RosenbrockGifs\rosenbrockEvDif2D.gif" alt="mapaga" title="rosenEvDif2D">
+
+_figura x: Imagen animada Evolución diferencial de Rosenbrock_
+
+
 ## 2. Optimización Combinatoria
 
 ## Problemática
