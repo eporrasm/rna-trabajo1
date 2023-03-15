@@ -480,3 +480,11 @@ TypeError: only size-1 arrays can be converted to Python scalars
 2023-03-15 20:18:22,301 - matplotlib.animation - INFO - Animation.save using <class 'matplotlib.animation.PillowWriter'>
 2023-03-15 20:18:33,488 - matplotlib.animation - WARNING - MovieWriter imagemagick unavailable; using Pillow instead.
 2023-03-15 20:18:33,491 - matplotlib.animation - INFO - Animation.save using <class 'matplotlib.animation.PillowWriter'>
+2023-03-15 20:28:31,436 - pyswarms.single.global_best - INFO - Optimize for 100 iters with {'c1': 0.3, 'c2': 0.5, 'w': 0.9}
+2023-03-15 20:28:31,654 - pyswarms.single.global_best - INFO - Optimization finished | best cost: 3.980870549161732e-05, best pos: [0.99440067 0.98912349]
+2023-03-15 20:28:34,529 - pyswarms.single.global_best - INFO - Optimize for 100 iters with {'c1': 0.3, 'c2': 0.5, 'w': 0.9}
+2023-03-15 20:28:34,765 - pyswarms.single.global_best - INFO - Optimization finished | best cost: 0.0012623545024273946, best pos: [0.96681305 0.93345869]
+2023-03-15 20:28:35,939 - pyswarms.single.global_best - INFO - Optimize for 100 iters with {'c1': 0.3, 'c2': 0.5, 'w': 0.9}
+2023-03-15 20:28:36,228 - pyswarms.single.global_best - INFO - Optimization finished | best cost: 0.00010860767941539039, best pos: [1.00636266 1.01359119]
+2023-03-15 20:29:08,525 - matplotlib.animation - WARNING - MovieWriter imagemagick unavailable; using Pillow instead.
+2023-03-15 20:29:08,529 - matplotlib.animation - INFO - Animation.save using <class 'matplotlib.animation.PillowWriter'>
