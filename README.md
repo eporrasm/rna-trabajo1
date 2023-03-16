@@ -29,9 +29,25 @@ Es una función para n variables en $f(x_1,x_2,...,x_n) = y $
 
 $f(x) = \sum([100*(x_{i+1}-x_i^2)^2 + (x_i-1)^2])$
 
-La función se evalúa en el dominio del hipercubo $x_i \in (-5,10)$ para todo $i = 1,2,...,n$. Su mínimo global es $x^* = (1,1,...1)$
+La función se evalúa en el dominio del hipercubo $x_i \in [-5,10]$ para todo $i = 1,2,...,n$. Su mínimo global es $x^* = (1,1,...1)$
 
-## Introducción
+### Algoritmos
+
+#### Algoritmo Génetico (GA)
+
+Para generar los algoritmos genéticos, se utilizó la librería !(PyGAD)[https://pygad.readthedocs.io/en/latest/] de Python. En estos algoritmos, tenemos una serie de individuos con alguna cualidad que varía (es decir, muta). De manera paralela a la naturaleza, los que mejor se adaptan son los que sobreviven. Así, se empiezan a simular múltiples generaciones y quedan los mejores individuos (gracias al elitismo, que permite la sucesión de un individuo de una generación a otra sin alteraciones), generando generaciones con características variadas (por ejemplo, con el uso del crossover que es la combinación de padres para engendrar un nuevo individuo) y demás.
+
+#### Optimización de partículas (PSO)
+
+Para generar los algoritmos por optimización de partículas, se usó la librería !(PySwarms)[https://pyswarms.readthedocs.io/en/latest/] de Python. En este algoritmo se trabaja cobre un espacio de búsqueda utilizando una cantidad alta de partículas y se les altera su posición y velocidad dependiendo del análisis de la optimización de cada punto en que se hallen. 
+
+#### Evolución diferencial (DE)
+
+Para generar el método de la evolución diferencial, se usó el código de 兔子爱读书, usuario del foro de programación japonés !(csdn.net)[https://blog.csdn.net/ztf312/article/details/78432711]. Este genera una mejora en la posición teniendo múltiples soluciones candidatas y creando nuevas con base en estas. En caso de que una mejor solución se genere, se guarda. En caso contrario, se descarta.
+
+#### Descenso por gradiente
+
+Es un algoritmo iterativo que toma pasos opuestos de la dirección del gradiente. Así, se logra tomar la vía del descenso más agudo, lo que puede llevar a alcanzar un mínimo, es decir, un punto en donde, sin importar dónde nos movamos, será el menor de los valores. Es de tener en cuenta que no necesariamente lleva al mínimo global (es decir, de todo el dominio), sino, posiblemente, a un mínimo global (un sector perteneciente al dominio). 
 
 ## 1. Optimización Numérica
 
@@ -115,7 +131,7 @@ _figura x: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
 _figura x: Imagen animada Evolución diferencial de función de Rosenbrock_
 
 
-###Conclusiones
+## Conclusiones
 * Es de notarse que la velocidad en la que los algoritmos heurísticos se desplazan es muy alta. Logran visitar muchos puntos en esta clase de funciones que tienen cientos o miles de mínimos.
 * El descenso por gradiente debe ser modificado para evitar que caiga en mínimos locales. Es un método muy interesante y útil, con unas bases matemáticas limpias. Sin embargo, se tendría que ejecutar cientas de veces desde muchos puntos iniciales para poder vencer funciones con muchos mínimos locales, tales como Griewank.
 * En esta ocasión, para la función de Griewank, el método que mejor se comportó fue el de evolución diferencial, que fue capaz de recorrer rápidamente muchos mínimos locales hasta hallar el mínimo global en $(0,0)$.
