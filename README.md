@@ -44,7 +44,7 @@ Inicialmente se trabajó utilizando el método del descenso por gradiente. Como 
 
 ###Algoritmos genéticos
 Los algoritmos genéticos tuvieron un desempeño variado. 
-El algoritmo evolutivo usado fue el de PyGAD. En este, a pesar de que se trabajó usando 200 generaciones, llegó en uno de los primeros a lo que consideró el mínimo en [6.28,  -26.63] con un valor de 0,187. Sin embargo, como se mostró en la introducción, este es tan sólo un mínimo local.
+El algoritmo evolutivo usado fue el de PyGAD. En este, a pesar de que se trabajó usando 200 generaciones, llegó en uno de los primeros a lo que consideró el mínimo en $(6.28, -26.63)$ con un valor de 0,187. Sin embargo, como se mostró en la introducción, este es tan sólo un mínimo local.
 
 <img src="GriewankGifs\gen_vs_fit_pygad_griewank.gif" alt="gen_vs_fit" title="gen_vs_fit">
     _figura 2: gen vs fit en PyGAD_ 
@@ -52,6 +52,29 @@ El algoritmo evolutivo usado fue el de PyGAD. En este, a pesar de que se trabaj�
 
 
 <img src="GriewankGifs\griewank.gif" alt="griewankDG" title="griewankDG">
+
+    _figura 3: Descenso 2D griewank_
+    
+ En cuanto a la optimización de partículas, se observó (figura 4) que de manera similar encontró rápidamente un mínimo local en $(2.22115519 65.33808975)$ y se quedó ahí, mejorando su posición localmente.
+ 
+ 
+<img src="GriewankGifs\vs_pysw_griewank.gif" alt="vs" title="griewankvs">  
+     _figura 4: gen vs fit en PySwarms 2D griewank_
+
+Se puede observar en la figura 5 a continuación cómo funcionó esto. Varias partículas permanecieron en el punto y las que rondaban su zona, no se continuaron desplazando. Se debería intentar utilizar más partículas pero esto llevaría a un gasto más alto de recuersos. 
+
+
+
+<img src="GriewankGifs\griewankSw.gif" alt="griewankSw" title="griewankSw"> 
+    _figura 5: Descenso 2D griewank_
+
+
+En la evolución diferencial se obtuvo los mejores resultados. En este se logró hallar un valor cercanísimo al mínimo global en 2D con $(-4.634681142547457e-06, 2.4048929681146607e-06)$ lo que hace que la función alcance un valor de $8.477663016037695e-11$. 
+
+<img src="GriewankGifs\vs_ed_griewank.gif" alt="griewankDG " title="griewankDG">
+    _figura 6: gen vs fit 2d ED griewank_
+    
+En la gráfica 7 se puede observar que este método recorre mucho terreno y no se queda tan solo con el primer o segundo mínimo local que halla. Recorre gran parte de la gráfica entre $(-100,100)$.
 
 <img src="GriewankGifs\griewankDG.gif" alt="griewankDG" title="griewankDG">
 
