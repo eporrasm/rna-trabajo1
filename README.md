@@ -29,7 +29,7 @@ Es una función para n variables en $f(x_1,x_2,...,x_n) = y $
 
 $f(x) = \sum([100*(x_{i+1}-x_i^2)^2 + (x_i-1)^2])$
 
-La función se evalúa en el dominio del hipercubo $x_i \in (-5,10)$ para todo $i = 1,2,...,n$. Su mínimo global es $x^* = (0,0,...0)$
+La función se evalúa en el dominio del hipercubo $x_i \in (-5,10)$ para todo $i = 1,2,...,n$. Su mínimo global es $x^* = (1,1,...1)$
 
 ## Introducción
 
@@ -76,7 +76,7 @@ Se puede observar en la figura 5 a continuación cómo funcionó esto. Varias pa
 
 En la evolución diferencial se obtuvo los mejores resultados. Se puede observar en la figura 6 su fitness. En este se logró hallar un valor cercanísimo al mínimo global en 2D con $(-4.634681142547457e-06, 2.4048929681146607e-06)$ lo que hace que la función alcance un valor de $8.477663016037695e-11$. 
 
-<img src="GriewankGifs\vs_ed_griewank.png" alt="griewankED  "title="griewankED">
+<img src="GriewankGifs\vs_ed_griewank.png" alt="griewankED" title="griewankED">
 
     _figura 6: gen vs fit 2d ED griewank_
     
@@ -85,7 +85,6 @@ En la figura 7 se puede observar que este método recorre mucho terreno y no se 
 <img src="GriewankGifs\griewankED.gif" alt="griewankDG" title="griewankDG">
 
     _figura 7: gen vs fit 2d ED griewank_
-
 
 
 ## 1.2 Rosenbrock
@@ -114,6 +113,12 @@ _figura x: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
 <img src="RosenbrockGifs\rosenbrockEvDif2D.gif" alt="mapaga" title="rosenEvDif2D">
 
 _figura x: Imagen animada Evolución diferencial de función de Rosenbrock_
+
+
+###Conclusiones
+* Es de notarse que la velocidad en la que los algoritmos heurísticos se desplazan es muy alta. Logran visitar muchos puntos en esta clase de funciones que tienen cientos o miles de mínimos.
+* El descenso por gradiente debe ser modificado para evitar que caiga en mínimos locales. Es un método muy interesante y útil, con unas bases matemáticas limpias. Sin embargo, se tendría que ejecutar cientas de veces desde muchos puntos iniciales para poder vencer funciones con muchos mínimos locales, tales como Griewank.
+* En esta ocasión, para la función de Griewank, el método que mejor se comportó fue el de evolución diferencial, que fue capaz de recorrer rápidamente muchos mínimos locales hasta hallar el mínimo global en $(0,0)$.
 
 
 ## 2. Optimización Combinatoria
