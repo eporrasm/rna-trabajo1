@@ -40,7 +40,7 @@ La función se evalúa en el dominio del hipercubo $x_i \in (-5,10)$ para todo $
 ###Descenso por gradiente
 Inicialmente se trabajó utilizando el método del descenso por gradiente. Como se puede observar, este sufre un problema: como lo que hace es bajar según lo que le diga la gradiente de la función, termina decantándose en el primer mínimo local que halle. En este caso, se ubicó en punto inicial cercano al mínimo global. Sin embargo, como se puede observar a continuación en la figura 1, el algoritmo se acomoda al mínimo global más cercano. Esto quiere decir que funcionaría mejor con funciones de talante no decreciente o no creciente (es decir, funciones monótonas), porque de esta manera podría navegar con mayor facilidad a través de la función hasta llegar a un mínimo. 
 
-<img src="GriewankGifs\griewankDG.gif" alt="griewankDG" title="griewankDG">
+<img src="GriewankGifs\griewankGradient2D.gif" alt="griewankDG" title="griewankDG">
 
     _figura 1: Griewank Descenso por gradiente_ 
 
@@ -69,20 +69,20 @@ Se puede observar en la figura 5 a continuación cómo funcionó esto. Varias pa
 
 
 
-<img src="GriewankGifs\griewankSw.gif" alt="griewankSw" title="griewankSw"> 
+<img src="GriewankGifs\griewankSW.gif" alt="griewankSw" title="griewankSw"> 
 
     _figura 5: Descenso 2D Swarms griewank_
 
 
 En la evolución diferencial se obtuvo los mejores resultados. Se puede observar en la figura 6 su fitness. En este se logró hallar un valor cercanísimo al mínimo global en 2D con $(-4.634681142547457e-06, 2.4048929681146607e-06)$ lo que hace que la función alcance un valor de $8.477663016037695e-11$. 
 
-<img src="GriewankGifs\vs_ed_griewank.png" alt="griewankDG " title="griewankDG">
+<img src="GriewankGifs\vs_ed_griewank.png" alt="griewankED  "title="griewankED">
 
     _figura 6: gen vs fit 2d ED griewank_
     
 En la figura 7 se puede observar que este método recorre mucho terreno y no se queda tan solo con el primer o segundo mínimo local que halla. Recorre gran parte de la gráfica entre $(-100,100)$.
 
-<img src="GriewankGifs\griewankDG.gif" alt="griewankDG" title="griewankDG">
+<img src="GriewankGifs\griewankED.gif" alt="griewankDG" title="griewankDG">
 
     _figura 7: gen vs fit 2d ED griewank_
 
