@@ -1,19 +1,26 @@
 # Trabajo 1 de Redes Neuronales Artificiales y Algoritmos Bio-Inspirados de la UNAL-med
 # Optimización Eurística
 
+## A cargo de:
+
+- Esteban García Carmona
+- Emilio Porras Mejía
+- Felipe Miranda Arboleda
+
+
 ## 1. Introducción
 En el mundo de las redes neuronales y los algoritmos bioinspirados existen, al igual que en la naturaleza, muchos medios de alcanzar un objetivo (en este caso, minimizar una función; en la naturaleza: comer, reproducirse, adaptarse, sobrevivir). Por lo mismo, se trabajará utilizando diferentes tipos de optimizaciones para analizar qué ventajas y diferencias tienen entre ellas. Las que se utilizarán son: Método de descenso por gradiente con condición inicial aleatoria, algoritmos evolutivos, optimización de partículas y evolución diferencial. Además, se desea observar qué diferencias resultan de usar métodos de uso de lógica matemática, como descenso por gradiente a diferencia de los que puedan obtenerse de los bioinspirados. 
 
-Para el análisis de las optimizaciones, se usarán dos funciones: La función de las seis jorobas de camello [1] y la función Rosenbrock [2].
+Para el análisis de las optimizaciones, se usarán dos funciones: La función de la Griewank [1] y la función Rosenbrock [2].
 
-### Seis Jorobas de Camello:
-Es una función de dos variables $f(x_1,x_2) = y$. 
+### Griewank:
+Es una función de d variables $f(x_1,x_2,...,x_d) = y$. 
 
-$(f(x) = 2*x_1^2 - 1.05*x_1^4 + x_1^6 /6 + x_1*x_2 + x_2^2)$
+$(f(x) = 1 + \sum(x_i/4000) - \prod(\cos(x_i)/\sqrt(i))$ para $i \in 1,2,...,d$
 
-Por lo general se evalua en $x_i \in [-5,5],\ i = 1,2$
+Por lo general se evalua en $x_i \in [-600,600],\ i = 1,2,...,d$
 
-Puede ser engañoso dado que tiene múltiples mínimos locales. Su mínimo global es $(x_1, x_2) = (0, 0) $
+Puede ser engañoso dado que tiene múltiples mínimos locales. Su mínimo global es $(x_1, x_2,...,x_d) = (0, 0,...,0) $
 
 #### FOTO
 
@@ -22,19 +29,32 @@ Es una función para n variables en $f(x_1,x_2,...,x_n) = y $
 
 $f(x) = \sum([100*(x_{i+1}-x_i^2)^2 + (x_i-1)^2])$
 
-## A cargo de:
-
-- Esteban García Carmona
-- Emilio Porras Mejía
-- Felipe Miranda Arboleda
-
 ## Introducción
 
 ## 1. Optimización Numérica
 
 ## 1.1 Griewank
 
-*cosas*
+###Descenso por gradiente
+Inicialmente se trabajó utilizando el método del descenso por gradiente. Como se puede observar, este sufre un problema: como lo que hace es bajar según lo que le diga la gradiente de la función, termina decantándose en el primer mínimo local que halle. En este caso, se ubicó en punto inicial cercano al mínimo global. Sin embargo, como se puede observar a continuación en la figura 1, el algoritmo se acomoda al mínimo global más cercano. Esto quiere decir que funcionaría mejor con funciones de talante no decreciente o no creciente (es decir, funciones monótonas), porque de esta manera podría navegar con mayor facilidad a través de la función hasta llegar a un mínimo. 
+
+<img src="GriewankGifs\griewankDG.gif" alt="griewankDG" title="griewankDG">
+
+    _figura 1: Griewank Descenso por gradiente_ 
+
+###Algoritmos genéticos
+Los algoritmos genéticos tuvieron un desempeño variado. 
+El algoritmo evolutivo usado fue el de PyGAD. En este, a pesar de que se trabajó usando 200 generaciones, llegó en uno de los primeros a lo que consideró el mínimo en [6.28,  -26.63] con un valor de 0,187. Sin embargo, como se mostró en la introducción, este es tan sólo un mínimo local.
+
+<img src="GriewankGifs\gen_vs_fit_pygad_griewank.gif" alt="gen_vs_fit" title="gen_vs_fit">
+    _figura 2: gen vs fit en PyGAD_ 
+
+
+
+<img src="GriewankGifs\griewank.gif" alt="griewankDG" title="griewankDG">
+
+<img src="GriewankGifs\griewankDG.gif" alt="griewankDG" title="griewankDG">
+
 
 ## 1.2 Rosenbrock
 
@@ -157,7 +177,7 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 
 
 ## Bibliografía y referencias
-[1] "Virtual Library of Simulation Experiments" (2013). Three-Hump Camel Function [Online]. Available: https://www.sfu.ca/~ssurjano/camel3.html
+[1] "Virtual Library of Simulation Experiments" (2013). Griewank Function [Online]. Available: https://www.sfu.ca/~ssurjano/griewank.html
 [2] "Virtual Library of Simulation Experiments" (2013). Rosenbrock Function [Online]. Available: https://www.sfu.ca/~ssurjano/rosen.html
 
 - [1] “Geoportal del DANE - Codificación Divipola,” geoportal.dane.gov.co. https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/ (accessed Mar. 10, 2023).
