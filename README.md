@@ -160,7 +160,7 @@ _figura 9: Imagen animada Descenso Por Gradiente de función de Rosenbrock_
 
 El la figura 10 a continuación se puede apreciar una aproximación mucho mejor al mínimo con 3 variables, y 10000 iteraciones.
 
-<img src="RosenbrockGifs\Gradient_3d_10000_iters.png" alt="mapaga" title="rosenGradient3D">
+<img src="RosenbrockGifs\Gradient_3d_10000_iters.PNG" alt="mapaga" title="rosenGradient3D">
 
 _figura 10: Codigo Descenso Por Gradiente de función de Rosenbrock de 3 variables_
 <br/><br/>
@@ -335,7 +335,7 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 ## Bibliografía y referencias
 [1] "Virtual Library of Simulation Experiments" (2013). Griewank Function [Online]. Available: https://www.sfu.ca/~ssurjano/griewank.html
 [2] "Virtual Library of Simulation Experiments" (2013). Rosenbrock Function [Online]. Available: https://www.sfu.ca/~ssurjano/rosen.html
-
+Optimization — Descent Algorithms
 https://towardsdatascience.com/optimization-descent-algorithms-bf595f069788
 
 - [1] “Geoportal del DANE - Codificación Divipola,” geoportal.dane.gov.co. https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/ (accessed Mar. 10, 2023).
