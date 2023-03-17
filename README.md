@@ -144,7 +144,7 @@ _figura 11: Gradiente 3D_
 
 
 
-## 1.2 Rosenbrock
+## 1.2 Rosenbrock [3]
 
 ### Descenso Por Gradiente
 <br/>
@@ -155,14 +155,14 @@ Para este método, como se aprecia en la figura 12, se utilizaron 250 iteracione
 
 <img src="RosenbrockGifs\rosenbrockGradient2D.gif" alt="mapaga" title="rosenGradient2D">
 
-_figura 9: Imagen animada Descenso Por Gradiente de función de Rosenbrock_
+_figura 12: Imagen animada Descenso Por Gradiente de función de Rosenbrock_
 <br/><br/>
 
-El la figura 10 a continuación se puede apreciar una aproximación mucho mejor al mínimo con 3 variables, y 10000 iteraciones.
+El la figura 13 a continuación se puede apreciar una aproximación mucho mejor al mínimo con 3 variables, y 10000 iteraciones.
 
 <img src="RosenbrockGifs\Gradient_3d_10000_iters.PNG" alt="mapaga" title="rosenGradient3D">
 
-_figura 10: Codigo Descenso Por Gradiente de función de Rosenbrock de 3 variables_
+_figura 13: Codigo Descenso Por Gradiente de función de Rosenbrock de 3 variables_
 <br/><br/>
 
 ### Algoritmos genéticos
@@ -175,49 +175,49 @@ con los valores de $C1:$ 0.3, $C2:$ 0.5 y $W:$ 0.9
 
 <img src="RosenbrockGifs\rosenbrockSwarm.gif" alt="mapaga" title="rosenSwarm2D">
 
-_figura 11: Imagen animada optimización de partículas de función de Rosenbrock_
+_figura 14: Imagen animada optimización de partículas de función de Rosenbrock_
 <br/><br/>
 
 
 
-En la figura 12 a continuación se evidencia que el costo del movimiento de las partículas se acentó antes de llegar a la iteración 100, alrededor de la iteración 82, incluso acentandose mucho antes y sin variar por la mayoría de las iteraciones.
+En la figura 15 a continuación se evidencia que el costo del movimiento de las partículas se acentó antes de llegar a la iteración 100, alrededor de la iteración 82, incluso acentandose mucho antes y sin variar por la mayoría de las iteraciones.
 
 Lo cuál indica que dadas más iteraciones, aunque el costo se haya acenturado, las partículas podrían encontrar de manera mucho más precisa el mínimo global de la función.
 
 <img src="RosenbrockGifs\rosen_swarm_cost_history.png" alt="mapaga" title="rosenSwarmCost">
 
-_figura 12: Imagen del costo optimización de partículas de función de Rosenbrock_
+_figura 15: Imagen del costo optimización de partículas de función de Rosenbrock_
 <br/><br/>
 
-A continuación se muestran las imágenes animadas de $xz$ (figura 13) y $yz$ (figura 14) de la optimización de partículas para Rosenbrock de 3 variables de entrada. Siendo el vector de variables de entrada $v = (x,y,z)$
+A continuación se muestran las imágenes animadas de $xz$ (figura 16) y $yz$ (figura 17) de la optimización de partículas para Rosenbrock de 3 variables de entrada. Siendo el vector de variables de entrada $v = (x,y,z)$
 
 Incluso con 150 iteraciones, las partículas no tuvieron un buen acercamiento al mínimo global, siendo los puntos encontrados en $xz$ $(0.94404085, 0.7939841) $ y $yz$ $(0.89120598, 0.7939841)$ 
 
 <img src="RosenbrockGifs\rosenbrockSwarmXZ.gif" alt="mapaga" title="rosenSwarmXZ">
 
-_figura 13: Imagen animada optimización de partículas de función de Rosenbrock en XZ_
+_figura 16: Imagen animada optimización de partículas de función de Rosenbrock en XZ_
 <br/><br/>
 
 <img src="RosenbrockGifs\rosenbrockSwarmYZ.gif" alt="mapaga" title="rosenSwarmYZ">
 
-_figura 14: Imagen animada optimización de partículas de función de Rosenbrock en YZ_
+_figura 17: Imagen animada optimización de partículas de función de Rosenbrock en YZ_
 <br/><br/>
 
 ### Algoritmo Evolutivo
 <br/>
 
-El algoritmo evolutivo utilizado para evaluar Rosenbrock fue el implementado en PyGad. Este fue implementado con 200 iteraciones, pero como se puede apreciar en la figura 15 a continuación, encontró una aproximación considerable del mínimo desde muy temprano.
+El algoritmo evolutivo utilizado para evaluar Rosenbrock fue el implementado en PyGad. Este fue implementado con 200 iteraciones, pero como se puede apreciar en la figura 18 a continuación, encontró una aproximación considerable del mínimo desde muy temprano.
 
 <img src="RosenbrockGifs\rosen_PyGAD_fitness.PNG" alt="mapaga" title="rosenPyGadEf">
 
-_figura 15: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
+_figura 18: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
 <br/><br/>
 
 La aproximación encontrada por el algoritmo implementado en PyGAD fue $(1.03489707, 1.07821128)$.
 
 <img src="RosenbrockGifs\rosenbrockPyGad2D.gif" alt="mapaga" title="rosenPyGad2D">
 
-_figura 16: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
+_figura 19: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
 <br/><br/>
 
 ### Evolución diferencial
@@ -227,7 +227,7 @@ Utilizando el algoritmo descrito en la introducción, se puede evidenciar que, a
 
 <img src="RosenbrockGifs\rosenbrockEvDif2D.gif" alt="mapaga" title="rosenEvDif2D">
 
-_figura 17: Imagen animada Evolución diferencial de función de Rosenbrock_
+_figura 20: Imagen animada Evolución diferencial de función de Rosenbrock_
 <br/><br/>
 
 
@@ -235,6 +235,7 @@ _figura 17: Imagen animada Evolución diferencial de función de Rosenbrock_
 * Es de notarse que la velocidad en la que los algoritmos heurísticos se desplazan es muy alta. Logran visitar muchos puntos en esta clase de funciones que tienen cientos o miles de mínimos.
 * El descenso por gradiente debe ser modificado para evitar que caiga en mínimos locales. Es un método muy interesante y útil, con unas bases matemáticas limpias. Sin embargo, se tendría que ejecutar cientas de veces desde muchos puntos iniciales para poder vencer funciones con muchos mínimos locales, tales como Griewank.
 * En esta ocasión, para la función de Griewank, el método que mejor se comportó fue el de evolución diferencial, que fue capaz de recorrer rápidamente muchos mínimos locales hasta hallar el mínimo global en $(0,0)$.
+* Se observó un desempeño general más alto en la función de Griewank usando los algoritmos bioinspirados, especialmente el de evolución diferencial, al de descenso por gradiente. Se vio tanto en 2D como en 3D. Además, logró estos resultados superiores con un uso menor de epochs o iteraciones. Esto se puede deber a que este método matemático sufre a la hora de evaluar funciones con una cantidad tan basta de mínimos locales. 
 * El en caso de Rosenbrock, se puede notar que el desempeño de descenso por gradiente es muy afectado por el punto inicial, el learning rate y la cantidad de iteraciones que se le definan, incluso sin tener muchos mínimos locales en los que pueda caer. Con ciertos puntos iniciales encuentra en muy pocas iteraciones el punto mínimo sin ningún problema, o dependiendo del learning rate, puede o encontrarlo o no encontrarlo nunca.
 * En el caso de rosenbrock, por no tener muchos mínimos locales, como Griewank, es mucho más útil y confiable, aunque no sea ni el más rápido ni el más preciso en encontrar el mínimo.
 * Al experimentar con tantos métodos de optimización, se evidencia que todos son útiles y no necesariamente uno siempre es mejor que otro, pero sí se debe tener en cuenta qué tipo de función se quiere analizar con ellos para saber cuál es el mejor a implementar en futuros proyectos.
@@ -250,7 +251,7 @@ Se debe resolver el problema del vendedor viajero para varias ciudades principal
 
 Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y Colonia de hormigas (AC).
 
-1. Creamos la base de datos de las ciudades a visitar con sus respectivas coordenadas [1].
+1. Creamos la base de datos de las ciudades a visitar con sus respectivas coordenadas [4].
 
 | Cod Mun | Municipio    | Cod Dep | Departamento       | Latitud     | Longitud     |
 |---------|--------------|---------|--------------------|-------------|--------------|
@@ -272,11 +273,11 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 
 2. Procedemos a construír la matriz de costos. La entrada i,j de esta matriz contendrá el costo en pesos de ir de la ciudad i a la ciudad j. Éste, a su vez es la suma del salario por horas del vendedor, costo de los peajes y el costo del combustible en valores del 2023.
 
-    Costo hora del vendedor: El salario promedio de un conductor en colombia es de $6.827/hora [2].
+    Costo hora del vendedor: El salario promedio de un conductor en colombia es de $6.827/hora [5].
 
-    Costo de los peajes: Se estableció el costo de los peajes, el tiempo estimado de viaje y la distancia para cada par de ciudades [3].
+    Costo de los peajes: Se estableció el costo de los peajes, el tiempo estimado de viaje y la distancia para cada par de ciudades [6].
 
-    Costo del combustible: El recorrido se hará en un Mini Cooper 1.6, cuyo rendimiento es de 8,35 litros / 100 km [4]. Además, el costo promedio de un litro de gasolina corriente en Colombia es de $2.747,31/litro [5]. 
+    Costo del combustible: El recorrido se hará en un Mini Cooper 1.6, cuyo rendimiento es de 8,35 litros / 100 km [7]. Además, el costo promedio de un litro de gasolina corriente en Colombia es de $2.747,31/litro [8]. 
 
     Importamos las tablas de tiempo de viaje, costo de los peajes y distancia entre ciudades. Para así calcular la siguiente matriz de costos totales en pesos:
 
@@ -298,11 +299,11 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 | 11446906.425999999 | 44665970.880499996 | 270600.13864 | 399633.056065 | 577374.299255 | 478131.01729 | 161951.94933 | 244004.413625 | 458683.35762499995 | 0.0 | 127769.59085 | 177239.63937999998 | 610085.74202 | 0.0 | 525409.23966 |
 | 418535.755365 | 155067.773575 | 390112.273795 | 201113.822865 | 168573.980525 | 215874.40212499996 | 366919.97109999997 | 347255.136825 | 200927.126705 | 525409.23966 | 409963.84150499996 | 685441.7648049999 | 155067.773575 | 525409.23966 | 0.0 |
 
-3. Se implementaron algoritmos genéticos por medio de python [6] y se obtuvo el siguiente gif que representa la evolución de la mejor ruta a lo largo de las generaciones:
+3. Se implementaron algoritmos genéticos por medio de python [9] y se obtuvo el siguiente gif que representa la evolución de la mejor ruta a lo largo de las generaciones:
 
     <img src="gifGA.gif" alt="mapaga" title="mapaga">
 
-    _figura x: Mapa de Colombia con recorridos_ 
+    _figura 21: Mapa de Colombia con recorridos_ 
 
     Con lo que la mejor ruta encontrada por los algoritmos genéticos fue:
 
@@ -310,11 +311,11 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 
     Con un costo de: $1.586.600 COP
 
-4. Se implementó colonia de hormigas por medio de python [7] y se obtuvo el siguiente gif que representa la evolución de la mejor ruta que descubren 100 hormigas:
+4. Se implementó colonia de hormigas por medio de python [10] y se obtuvo el siguiente gif que representa la evolución de la mejor ruta que descubren 100 hormigas:
 
     <img src="gifAC.gif" alt="mapaga" title="mapaga">
 
-    _figura x: Mapa de Colombia con recorridos de hormigas_ 
+    _figura 22: Mapa de Colombia con recorridos de hormigas_ 
 
     Con lo que la mejor ruta encontrada por la colonia de hormigas fue:
 
@@ -333,22 +334,31 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 
 
 ## Bibliografía y referencias
-[1] "Virtual Library of Simulation Experiments" (2013). Griewank Function [Online]. Available: https://www.sfu.ca/~ssurjano/griewank.html
-[2] "Virtual Library of Simulation Experiments" (2013). Rosenbrock Function [Online]. Available: https://www.sfu.ca/~ssurjano/rosen.html
-[2] "Towards Data Science" (2013). Optimization — Descent Algorithms [Online]. Available: https://towardsdatascience.com/optimization-descent-algorithms-bf595f069788
+- [1] "Virtual Library of Simulation Experiments" (2013). Griewank Function [Online]. Available: https://www.sfu.ca/~ssurjano/griewank.html
 
+- [2] "Virtual Library of Simulation Experiments" (2013). Rosenbrock Function [Online]. Available: https://www.sfu.ca/~ssurjano/rosen.html
 
+- [3] "Towards Data Science" (Mar 31 2020). Optimization — Descent Algorithms [Online]. Available: https://towardsdatascience.com/optimization-descent-algorithms-bf595f069788
 
-- [1] “Geoportal del DANE - Codificación Divipola,” geoportal.dane.gov.co. https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/ (accessed Mar. 10, 2023).
+- [4] “Geoportal del DANE - Codificación Divipola,” geoportal.dane.gov.co. https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/ (accessed Mar. 10, 2023).
 
-- [2] “Salario para Conductor en Colombia - Salario Medio,” Talent.com. https://co.talent.com/salary?job=conductor#:~:text= (accessed Mar. 10, 2023).
+- [5] “Salario para Conductor en Colombia - Salario Medio,” Talent.com. https://co.talent.com/salary?job=conductor#:~:text= (accessed Mar. 10, 2023).
 
-- [3] S. O. C. S.A.S, “Peajes en Colombia [2022],” Viaja por Colombia. https://viajaporcolombia.com/peajes/ (accessed Mar. 10, 2023).
+- [6] S. O. C. S.A.S, “Peajes en Colombia [2022],” Viaja por Colombia. https://viajaporcolombia.com/peajes/ (accessed Mar. 10, 2023).
 
-- [4] “Consumo Gasolina: 8,35 l/100km - Mini, Mini Cooper, Mini Cooper 1.6,” www.spritmonitor.de. https://www.spritmonitor.de/es/detalle/125236.html?cdetail=1 (accessed Mar. 10, 2023).
+- [7] “Consumo Gasolina: 8,35 l/100km - Mini, Mini Cooper, Mini Cooper 1.6,” www.spritmonitor.de. https://www.spritmonitor.de/es/detalle/125236.html?cdetail=1 (accessed Mar. 10, 2023).
 
-- [5] “Colombia precios de la gasolina, 06-marzo-2023,” GlobalPetrolPrices.com. https://es.globalpetrolprices.com/Colombia/gasoline_prices/#:~:text=El%20valor%20medio%20durante%20este (accessed Mar. 10, 2023).
+- [8] “Colombia precios de la gasolina, 06-marzo-2023,” GlobalPetrolPrices.com. https://es.globalpetrolprices.com/Colombia/gasoline_prices/#:~:text=El%20valor%20medio%20durante%20este (accessed Mar. 10, 2023).
 
-- [6] M. Kukreja, “Travelling-Salesman-Problem-with-Genetic-Algorithm,” GitHub, Oct. 10, 2022. https://github.com/manpreet1130/Travelling-Salesman-Problem-with-Genetic-Algorithm (accessed Mar. 10, 2023).
+- [9] M. Kukreja, “Travelling-Salesman-Problem-with-Genetic-Algorithm,” GitHub, Oct. 10, 2022. https://github.com/manpreet1130/Travelling-Salesman-Problem-with-Genetic-Algorithm (accessed Mar. 10, 2023).
 ‌
-- [7] R. Zhang, “ant-colony-tsp,” GitHub, Feb. 27, 2023. https://github.com/ppoffice/ant-colony-tsp (accessed Mar. 10, 2023).
+- [10] R. Zhang, “ant-colony-tsp,” GitHub, Feb. 27, 2023. https://github.com/ppoffice/ant-colony-tsp (accessed Mar. 10, 2023).
+
+- Algunas funciones extraídas y modificadas de las notas de Juan David Ospina en su curso Redes Neuronales y Algoritmos Bioinspirados de la UNAL-med semestre 2023-1.
+
+## Páginas recomendadas
+
+- [PyGAD](https://pygad.readthedocs.io/en/latest/)
+- [PySwarms](https://pyswarms.readthedocs.io/en/latest/)
+- https://programmerclick.com/article/13428601/ (versión en español, código extraído de [csdn.ne](https://blog.csdn.net/ztf312/article/details/78432711))
+
