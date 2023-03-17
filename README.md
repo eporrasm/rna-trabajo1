@@ -29,21 +29,21 @@ Es una función para n variables en $f(x_1,x_2,...,x_n) = y $
 
 $f(x) = \sum([100*(x_{i+1}-x_i^2)^2 + (x_i-1)^2])$
 
-La función se evalúa en el dominio del hipercubo $x_i \in [-5,10]$ para todo $i = 1,2,...,n$. Su mínimo global es $x^* = (1,1,...1)$
+La función se evalúa en el dominio del hipercubo $x_i \in [-5,10]$ para todo $i = 1,2,...,n$. Su mínimo global está en $x^* = (1,1,...1)$ siendo $f(x^*) = 0$
 
 ### Algoritmos
 
 #### Algoritmo Génetico (GA)
 
-Para generar los algoritmos genéticos, se utilizó la librería !(PyGAD)[https://pygad.readthedocs.io/en/latest/] de Python. En estos algoritmos, tenemos una serie de individuos con alguna cualidad que varía (es decir, muta). De manera paralela a la naturaleza, los que mejor se adaptan son los que sobreviven. Así, se empiezan a simular múltiples generaciones y quedan los mejores individuos (gracias al elitismo, que permite la sucesión de un individuo de una generación a otra sin alteraciones), generando generaciones con características variadas (por ejemplo, con el uso del crossover que es la combinación de padres para engendrar un nuevo individuo) y demás.
+Para generar los algoritmos genéticos, se utilizó la librería [PyGAD](https://pygad.readthedocs.io/en/latest/) de Python. En estos algoritmos, tenemos una serie de individuos con alguna cualidad que varía (es decir, muta). De manera paralela a la naturaleza, los que mejor se adaptan son los que sobreviven. Así, se empiezan a simular múltiples generaciones y quedan los mejores individuos (gracias al elitismo, que permite la sucesión de un individuo de una generación a otra sin alteraciones), generando generaciones con características variadas (por ejemplo, con el uso del crossover que es la combinación de padres para engendrar un nuevo individuo) y demás.
 
 #### Optimización de partículas (PSO)
 
-Para generar los algoritmos por optimización de partículas, se usó la librería !(PySwarms)[https://pyswarms.readthedocs.io/en/latest/] de Python. En este algoritmo se trabaja cobre un espacio de búsqueda utilizando una cantidad alta de partículas y se les altera su posición y velocidad dependiendo del análisis de la optimización de cada punto en que se hallen. 
+Para generar los algoritmos por optimización de partículas, se usó la librería [PySwarms](https://pyswarms.readthedocs.io/en/latest/) de Python. En este algoritmo se trabaja cobre un espacio de búsqueda utilizando una cantidad alta de partículas y se les altera su posición y velocidad dependiendo del análisis de la optimización de cada punto en que se hallen. 
 
 #### Evolución diferencial (DE)
 
-Para generar el método de la evolución diferencial, se usó el código de 兔子爱读书, usuario del foro de programación japonés !(csdn.net)[https://blog.csdn.net/ztf312/article/details/78432711]. Este genera una mejora en la posición teniendo múltiples soluciones candidatas y creando nuevas con base en estas. En caso de que una mejor solución se genere, se guarda. En caso contrario, se descarta.
+Para generar el método de la evolución diferencial, se usó el código de 兔子爱读书, usuario del foro de programación japonés [csdn.ne](https://blog.csdn.net/ztf312/article/details/78432711). Este genera una mejora en la posición teniendo múltiples soluciones candidatas y creando nuevas con base en estas. En caso de que una mejor solución se genere, se guarda. En caso contrario, se descarta.
 
 #### Descenso por gradiente
 
@@ -53,33 +53,37 @@ Es un algoritmo iterativo que toma pasos opuestos de la dirección del gradiente
 
 ## 1.1 Griewank
 
-###Descenso por gradiente
+### Descenso por gradiente
 Inicialmente se trabajó utilizando el método del descenso por gradiente. Como se puede observar, este sufre un problema: como lo que hace es bajar según lo que le diga la gradiente de la función, termina decantándose en el primer mínimo local que halle. En este caso, se ubicó en punto inicial cercano al mínimo global. Sin embargo, como se puede observar a continuación en la figura 1, el algoritmo se acomoda al mínimo global más cercano. Esto quiere decir que funcionaría mejor con funciones de talante no decreciente o no creciente (es decir, funciones monótonas), porque de esta manera podría navegar con mayor facilidad a través de la función hasta llegar a un mínimo. 
 
 <img src="GriewankGifs\griewankGradient2D.gif" alt="griewankDG" title="griewankDG">
 
-    _figura 1: Griewank Descenso por gradiente_ 
+_figura 1: Griewank Descenso por gradiente_
+<br/><br/> 
 
-###Algoritmos genéticos
+### Algoritmos genéticos
 Los algoritmos genéticos tuvieron un desempeño variado. 
 El algoritmo evolutivo usado fue el de PyGAD. En este, a pesar de que se trabajó usando 200 generaciones, llegó en uno de los primeros a lo que consideró el mínimo en $(6.28, -26.63)$ con un valor de 0,187. Sin embargo, como se mostró en la introducción, este es tan sólo un mínimo local. Se puede observar esto en la figura 2.
 
 <img src="GriewankGifs\gen_vs_fit_pygad_griewank.png" alt="gen_vs_fit" title="gen_vs_fit">
 
-    _figura 2: gen vs fit en PyGAD_ 
+_figura 2: gen vs fit en PyGAD_
+<br/><br/> 
 
 En la figura 3 podemos observar lo que sucede con la función, que se acomoda en un mínimo local en vez de continuar buscando otras opciones.
 
 <img src="GriewankGifs\griewank.gif" alt="griewankDG" title="griewankGAD">
 
-     _figura 3: Descenso 2D pyGAD griewank_
+_figura 3: Descenso 2D pyGAD griewank_
+<br/><br/>
     
- En cuanto a la optimización de partículas, se observó (figura 4) que de manera similar encontró rápidamente un mínimo local en $(2.22115519 65.33808975)$ y se quedó ahí, mejorando su posición localmente.
+ En cuanto a la optimización de partículas, se observó (figura 4) que de manera similar encontró rápidamente un mínimo local en $(2.22115519, 65.33808975)$ y se quedó ahí, mejorando su posición localmente.
  
  
 <img src="GriewankGifs\vs_pysw_griewank.png" alt="vs" title="griewankvs">  
 
-     _figura 4: gen vs fit en PySwarms 2D griewank_
+_figura 4: gen vs fit en PySwarms 2D griewank_
+<br/><br/>
 
 Se puede observar en la figura 5 a continuación cómo funcionó esto. Varias partículas permanecieron en el punto y las que rondaban su zona, no se continuaron desplazando. Se debería intentar utilizar más partículas pero esto llevaría a un gasto más alto de recuersos. 
 
@@ -87,55 +91,154 @@ Se puede observar en la figura 5 a continuación cómo funcionó esto. Varias pa
 
 <img src="GriewankGifs\griewankSW.gif" alt="griewankSw" title="griewankSw"> 
 
-    _figura 5: Descenso 2D Swarms griewank_
+_figura 5: Descenso 2D Swarms griewank_
+<br/><br/>
 
 
 En la evolución diferencial se obtuvo los mejores resultados. Se puede observar en la figura 6 su fitness. En este se logró hallar un valor cercanísimo al mínimo global en 2D con $(-4.634681142547457e-06, 2.4048929681146607e-06)$ lo que hace que la función alcance un valor de $8.477663016037695e-11$. 
 
 <img src="GriewankGifs\vs_ed_griewank.png" alt="griewankED" title="griewankED">
 
-    _figura 6: gen vs fit 2d ED griewank_
+_figura 6: gen vs fit 2d ED griewank_
+<br/><br/>
     
 En la figura 7 se puede observar que este método recorre mucho terreno y no se queda tan solo con el primer o segundo mínimo local que halla. Recorre gran parte de la gráfica entre $(-100,100)$.
 
 <img src="GriewankGifs\griewankED.gif" alt="griewankDG" title="griewankDG">
 
-    _figura 7: gen vs fit 2d ED griewank_
+_figura 7: gen vs fit 2d ED griewank_
+<br/><br/>
+
+Realizamos un ejemplo de Griewank por descenso por gradiente 3D y uno de evolución diferencial, dado que fue el que mejor funcionó. 
+
+Se puede observar a continuación en la figura 8 cómo luce Griewank en un mapa de calor. Para interpretarla, se debe observar que los valores $X,Y,Z$ son las entradas que recibirá en $R^3$ la función y los colores de los puntos representan el peso o la magnitud resultante de la función. 
+
+<img src="GriewankGifs\graf4D.png" alt="4D" title="
+4D">
+
+_figura 8: 4D griewank_
+
+Usando Evolución diferencial, con 200 iteraciones se llegó a lo siguiente:
+punto mínimo:
+$(3.210418136984703, 13.135882142777437, 0.36680785800953314)$ con
+$y = 0.07945049336684318$. Se puede observar que, a diferencia del 2D, no fue capaz de llegar en 200 iteraciones al mínimo global. Sin embargo, se puede observar en la figura 9 que las iteraciones fueron suficientes. Se tendría que jugar entonces con los coeficientes para lograr que, según el caso, mejore el resultado. 
+
+<img src="GriewankGifs\gen_vs_fit_ed_3d.png" alt="gen vs fit 3d" title="gen vs fit 3d">
+
+_figura 9: gen vs fit ed 3D_
+
+Y en la figura 10 se puede observar los puntos que toma y cómo va variando su valor:
+
+<img src="GriewankGifs\graf_4d_ed.png" alt="gen vs fit 3d" title="gen vs fit 3d">
+
+_figura 10: ED 3D Griewank_
+
+En descenso por gradiente, utilizando 300 epochs se llegó al resultado: El punto mínimo es $(-3.09437204  4.12248276  0.59673636)$ con $ y = 0.09057099912310762$. Este resultado es mayor que el de ED en 3D a pesar de haberse usado mayor número de epochs. 
+
+Podemos ver en la figura 11 que su comportamiento es mucho menos errático que el de los algoritmos heurísticos. En este se sigue una línea concreta de valores según el contraflujo de su gradiente. 
+
+
+<img src="GriewankGifs\4d_gradiente.png" alt="gradiente3d" title="gradiente3d">
+
+_figura 11: Gradiente 3D_
+
 
 
 ## 1.2 Rosenbrock
 
-### 1.2.1 Optimización de Partículas
+### Descenso Por Gradiente
+<br/>
 
+Se evidenció mucha dependencia para del punto inicial y el Learning Rate para encontrar el mínimo. la figura a continuación contempla 5 partículas, cada una simbolizando una aplicación de descenso por gradiente con un punto inicial randomizado diferente y siendo la mejor aproximación al mínimo $(1.08208908, 1.17122943)$
 
-<img src="RosenbrockGifs\rosenbrockSwarm.gif" alt="mapaga" title="rosenSwarm2D">
-
-_figura x: Imagen animada optimización de partículas de función de Rosenbrock_
-
-### 1.2.2 Descenso Por Gradiente
+Para este método, como se aprecia en la figura 12, se utilizaron 250 iteraciones, mostrando que necesita de muchas más iteraciones para ser eficiente.
 
 <img src="RosenbrockGifs\rosenbrockGradient2D.gif" alt="mapaga" title="rosenGradient2D">
 
-_figura x: Imagen animada Descenso Por Gradiente de función de Rosenbrock_
+_figura 9: Imagen animada Descenso Por Gradiente de función de Rosenbrock_
+<br/><br/>
 
-### 1.2.3 Algoritmo Evolutivo
+El la figura 10 a continuación se puede apreciar una aproximación mucho mejor al mínimo con 3 variables, y 10000 iteraciones.
+
+<img src="RosenbrockGifs\Gradient_3d_10000_iters.png" alt="mapaga" title="rosenGradient3D">
+
+_figura 10: Codigo Descenso Por Gradiente de función de Rosenbrock de 3 variables_
+<br/><br/>
+
+### Algoritmos genéticos
+
+### Optimización de partículas
+<br/>
+
+En la implementación de la optimización de partículas para la función de Rosenbrock, se utilizaton 10 partículas para encontrar el mínimo global. Con unas 100 iteraciones, las partículas se acercaron considerblemente al mínimo de $(1,1)$, siendo el aproximado encontrado $(1.00457554, 1.01009669)$.
+con los valores de $C1:$ 0.3, $C2:$ 0.5 y $W:$ 0.9
+
+<img src="RosenbrockGifs\rosenbrockSwarm.gif" alt="mapaga" title="rosenSwarm2D">
+
+_figura 11: Imagen animada optimización de partículas de función de Rosenbrock_
+<br/><br/>
+
+
+
+En la figura 12 a continuación se evidencia que el costo del movimiento de las partículas se acentó antes de llegar a la iteración 100, alrededor de la iteración 82, incluso acentandose mucho antes y sin variar por la mayoría de las iteraciones.
+
+Lo cuál indica que dadas más iteraciones, aunque el costo se haya acenturado, las partículas podrían encontrar de manera mucho más precisa el mínimo global de la función.
+
+<img src="RosenbrockGifs\rosen_swarm_cost_history.png" alt="mapaga" title="rosenSwarmCost">
+
+_figura 12: Imagen del costo optimización de partículas de función de Rosenbrock_
+<br/><br/>
+
+A continuación se muestran las imágenes animadas de $xz$ (figura 13) y $yz$ (figura 14) de la optimización de partículas para Rosenbrock de 3 variables de entrada. Siendo el vector de variables de entrada $v = (x,y,z)$
+
+Incluso con 150 iteraciones, las partículas no tuvieron un buen acercamiento al mínimo global, siendo los puntos encontrados en $xz$ $(0.94404085, 0.7939841) $ y $yz$ $(0.89120598, 0.7939841)$ 
+
+<img src="RosenbrockGifs\rosenbrockSwarmXZ.gif" alt="mapaga" title="rosenSwarmXZ">
+
+_figura 13: Imagen animada optimización de partículas de función de Rosenbrock en XZ_
+<br/><br/>
+
+<img src="RosenbrockGifs\rosenbrockSwarmYZ.gif" alt="mapaga" title="rosenSwarmYZ">
+
+_figura 14: Imagen animada optimización de partículas de función de Rosenbrock en YZ_
+<br/><br/>
+
+### Algoritmo Evolutivo
+<br/>
+
+El algoritmo evolutivo utilizado para evaluar Rosenbrock fue el implementado en PyGad. Este fue implementado con 200 iteraciones, pero como se puede apreciar en la figura 15 a continuación, encontró una aproximación considerable del mínimo desde muy temprano.
+
+<img src="RosenbrockGifs\rosen_PyGAD_fitness.png" alt="mapaga" title="rosenPyGadEf">
+
+_figura 15: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
+<br/><br/>
+
+La aproximación encontrada por el algoritmo implementado en PyGAD fue $(1.03489707, 1.07821128)$.
 
 <img src="RosenbrockGifs\rosenbrockPyGad2D.gif" alt="mapaga" title="rosenPyGad2D">
 
-_figura x: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
+_figura 16: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
+<br/><br/>
 
-### 1.2.4 Evolución diferencial
+### Evolución diferencial
+<br/>
+
+Utilizando el algoritmo descrito en la introducción, se puede evidenciar que, aunque no es el más rápido en encontrar un mínimo, es el más preciso para encontrarlo con una precisión de $1e^{-3}$. El mínimo encontrado fue $(1.000046850087367, 1.000105464503063)$
 
 <img src="RosenbrockGifs\rosenbrockEvDif2D.gif" alt="mapaga" title="rosenEvDif2D">
 
-_figura x: Imagen animada Evolución diferencial de función de Rosenbrock_
+_figura 17: Imagen animada Evolución diferencial de función de Rosenbrock_
+<br/><br/>
 
 
 ## Conclusiones
 * Es de notarse que la velocidad en la que los algoritmos heurísticos se desplazan es muy alta. Logran visitar muchos puntos en esta clase de funciones que tienen cientos o miles de mínimos.
 * El descenso por gradiente debe ser modificado para evitar que caiga en mínimos locales. Es un método muy interesante y útil, con unas bases matemáticas limpias. Sin embargo, se tendría que ejecutar cientas de veces desde muchos puntos iniciales para poder vencer funciones con muchos mínimos locales, tales como Griewank.
 * En esta ocasión, para la función de Griewank, el método que mejor se comportó fue el de evolución diferencial, que fue capaz de recorrer rápidamente muchos mínimos locales hasta hallar el mínimo global en $(0,0)$.
-
+* El en caso de Rosenbrock, se puede notar que el desempeño de descenso por gradiente es muy afectado por el punto inicial, el learning rate y la cantidad de iteraciones que se le definan, incluso sin tener muchos mínimos locales en los que pueda caer. Con ciertos puntos iniciales encuentra en muy pocas iteraciones el punto mínimo sin ningún problema, o dependiendo del learning rate, puede o encontrarlo o no encontrarlo nunca.
+* En el caso de rosenbrock, por no tener muchos mínimos locales, como Griewank, es mucho más útil y confiable, aunque no sea ni el más rápido ni el más preciso en encontrar el mínimo.
+* Al experimentar con tantos métodos de optimización, se evidencia que todos son útiles y no necesariamente uno siempre es mejor que otro, pero sí se debe tener en cuenta qué tipo de función se quiere analizar con ellos para saber cuál es el mejor a implementar en futuros proyectos.
+<br/><br/>
 
 ## 2. Optimización Combinatoria
 
@@ -173,7 +276,7 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 
     Costo de los peajes: Se estableció el costo de los peajes, el tiempo estimado de viaje y la distancia para cada par de ciudades [3].
 
-    Costo del combustible: El recorrido se hará en un Mini Cooper 1.6, cuyo rendimiento es de 8,35 litros / 100 km [4]. Además, el costo promedio de un litro de gasolina corriente en colombia es de $2.747,31/litro [5]. 
+    Costo del combustible: El recorrido se hará en un Mini Cooper 1.6, cuyo rendimiento es de 8,35 litros / 100 km [4]. Además, el costo promedio de un litro de gasolina corriente en Colombia es de $2.747,31/litro [5]. 
 
     Importamos las tablas de tiempo de viaje, costo de los peajes y distancia entre ciudades. Para así calcular la siguiente matriz de costos totales en pesos:
 
@@ -232,6 +335,8 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 ## Bibliografía y referencias
 [1] "Virtual Library of Simulation Experiments" (2013). Griewank Function [Online]. Available: https://www.sfu.ca/~ssurjano/griewank.html
 [2] "Virtual Library of Simulation Experiments" (2013). Rosenbrock Function [Online]. Available: https://www.sfu.ca/~ssurjano/rosen.html
+
+https://towardsdatascience.com/optimization-descent-algorithms-bf595f069788
 
 - [1] “Geoportal del DANE - Codificación Divipola,” geoportal.dane.gov.co. https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/ (accessed Mar. 10, 2023).
 
