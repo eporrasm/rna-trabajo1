@@ -208,7 +208,7 @@ _figura 14: Imagen animada optimización de partículas de función de Rosenbroc
 
 El algoritmo evolutivo utilizado para evaluar Rosenbrock fue el implementado en PyGad. Este fue implementado con 200 iteraciones, pero como se puede apreciar en la figura 15 a continuación, encontró una aproximación considerable del mínimo desde muy temprano.
 
-<img src="RosenbrockGifs\rosen_PyGAD_fitness.png" alt="mapaga" title="rosenPyGadEf">
+<img src="RosenbrockGifs\rosen_PyGAD_fitness.PNG" alt="mapaga" title="rosenPyGadEf">
 
 _figura 15: Imagen animada Algoritmo Evolutivo de función de Rosenbrock_
 <br/><br/>
@@ -335,8 +335,9 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 ## Bibliografía y referencias
 [1] "Virtual Library of Simulation Experiments" (2013). Griewank Function [Online]. Available: https://www.sfu.ca/~ssurjano/griewank.html
 [2] "Virtual Library of Simulation Experiments" (2013). Rosenbrock Function [Online]. Available: https://www.sfu.ca/~ssurjano/rosen.html
-Optimization — Descent Algorithms
-https://towardsdatascience.com/optimization-descent-algorithms-bf595f069788
+[2] "Towards Data Science" (2013). Optimization — Descent Algorithms [Online]. Available: https://towardsdatascience.com/optimization-descent-algorithms-bf595f069788
+
+
 
 - [1] “Geoportal del DANE - Codificación Divipola,” geoportal.dane.gov.co. https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-division-politico-administrativa-de-colombia/ (accessed Mar. 10, 2023).
 
