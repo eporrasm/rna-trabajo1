@@ -278,11 +278,11 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 
     Costo de los peajes: Se estableció el costo de los peajes, el tiempo estimado de viaje y la distancia para cada par de ciudades. 
     
-    <img src="e1.png" alt="e1" title="e1">
+    <img src="e1.PNG" alt="e1" title="e1">
 
     _figura 21: Ejemplo de peajes, tiempo y distancia entre dos ciudades_
 
-    <img src="e2.png" alt="e2" title="e2">
+    <img src="e2.PNG" alt="e2" title="e2">
 
     _figura 22: Ejemplo de costo de peajes entre dos ciudades_
     
