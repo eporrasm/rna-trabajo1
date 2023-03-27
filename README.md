@@ -276,7 +276,18 @@ Se solucionó el problema por dos vías diferentes: Algoritmos genéticos (GA) y
 
     Costo hora del vendedor: El salario promedio de un conductor en colombia es de $6.827/hora [5].
 
-    Costo de los peajes: Se estableció el costo de los peajes, el tiempo estimado de viaje y la distancia para cada par de ciudades. Utilizando la página Viaja por Colombia [6] (que provee toda la información necesaria explícitamente), obtuvimos las siguientes matrices correspondientes a cada uno de éstos parámetros: 
+    Costo de los peajes: Se estableció el costo de los peajes, el tiempo estimado de viaje y la distancia para cada par de ciudades. 
+    
+    <img src="e1.png" alt="e1" title="e1">
+
+    _figura 21: Ejemplo de peajes, tiempo y distancia entre dos ciudades_
+
+    <img src="e2.png" alt="e2" title="e2">
+
+    _figura 22: Ejemplo de costo de peajes entre dos ciudades_
+    
+
+    Utilizando la página Viaja por Colombia [6] (que explícitamente provee toda la información necesaria), obtuvimos las siguientes matrices correspondientes a cada uno de éstos parámetros: 
 
 ### Matriz de distancias (km):
 
@@ -364,7 +375,7 @@ Importamos las tablas de tiempo de viaje, costo de los peajes y distancia entre 
 
     <img src="gifGA.gif" alt="mapaga" title="mapaga">
 
-    _figura 21: Mapa de Colombia con recorridos_ 
+    _figura 23: Mapa de Colombia con recorridos_ 
 
     Con lo que la mejor ruta encontrada por los algoritmos genéticos fue:
 
@@ -376,7 +387,7 @@ Importamos las tablas de tiempo de viaje, costo de los peajes y distancia entre 
 
     <img src="gifAC.gif" alt="mapaga" title="mapaga">
 
-    _figura 22: Mapa de Colombia con recorridos de hormigas_ 
+    _figura 24: Mapa de Colombia con recorridos de hormigas_ 
 
     Con lo que la mejor ruta encontrada por la colonia de hormigas fue:
 
